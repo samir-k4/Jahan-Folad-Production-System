@@ -1,20 +1,26 @@
 // src/data/mockData.js
 
 export const branches = [
-  { id: 1, name: "نمایندگی کابل" },
-  { id: 2, name: "نمایندگی هرات" }
+  { id: 1, name: "جهان فولاد", location: "پارک های صنعتی" },
+  { id: 2, name: "گاز گروپ", location: "سه راهی گاز گروپ" }
 ];
 
 export const categories = [
   { id: 1, name: "میخ" },
-  { id: 2, name: "سیم" }
+  { id: 2, name: "سیم" },
+  { id: 3, name: "سیخ گول" },
+  { id: 4, name: "گادر" }
 ];
 
 export const products = [
-  { id: 1, category_id: 1, name: "میخ ۲ انچ کارتن", weight: "25kg", produced: 4500 },
-  { id: 2, category_id: 1, name: "میخ ۳ انچ کارتن", weight: "25kg", produced: 3200 },
-  { id: 3, category_id: 2, name: "سیم سیاه ۵۰ کیلو", weight: "50kg", produced: 1200 },
-  { id: 4, category_id: 2, name: "سیم گالوانیزه", weight: "50kg", produced: 800 }
+  { id: 1, category_id: 1, name: "میخ ۲ انچ کارتن", weights: ["5kg", "12kg", "25kg"] },
+  { id: 2, category_id: 1, name: "میخ ۳ انچ کارتن", weights: ["5kg", "12kg", "25kg"] },
+  { id: 3, category_id: 2, name: "سیم سیاه", weights: ["25kg", "50kg"] },
+  { id: 4, category_id: 2, name: "سیم گالوانیزه", weights: ["25kg", "50kg"] },
+  { id: 5, category_id: 3, name: "سیخ گول ۱۶", weights: ["100kg", "200kg"] },
+  { id: 6, category_id: 3, name: "سیخ گول ۲۰", weights: ["100kg", "200kg"] },
+  { id: 7, category_id: 4, name: "گادر ۱۴", weights: ["100kg", "200kg"] },
+  { id: 8, category_id: 4, name: "گادر ۱۸", weights: ["100kg", "200kg"] }
 ];
 
 export const employees = [

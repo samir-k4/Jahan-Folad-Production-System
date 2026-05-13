@@ -3,6 +3,10 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\BranchController;
+use App\Http\Controllers\ProductionLogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,3 +22,8 @@ use App\Http\Controllers\EmployeeController;
 Route::get('/employees', [EmployeeController::class, 'index']);
 Route::put('/employees/{id}', [EmployeeController::class, 'update']);
 Route::delete('/employees/{id}', [EmployeeController::class, 'destroy']);
+
+Route::apiResource('categories', CategoryController::class);
+Route::apiResource('products', ProductController::class);
+Route::get('/branches', [BranchController::class, 'index']);
+Route::apiResource('production-logs', ProductionLogController::class)->only(['index', 'store']);

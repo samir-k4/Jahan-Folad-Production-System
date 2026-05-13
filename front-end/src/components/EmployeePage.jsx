@@ -28,6 +28,14 @@ export default function EmployeePage() {
 
   const recordsPerPage = 10;
 
+  const formatSalary = (salary) => {
+    if (salary === null || salary === undefined) {
+      return "N/A";
+    }
+    // Remove decimal points by rounding
+    return Math.round(salary);
+  };
+
   useEffect(() => {
     fetch("http://localhost:8000/api/employees")
       .then((response) => response.json())
@@ -218,7 +226,7 @@ export default function EmployeePage() {
                       <td className="p-4 text-gray-600">{emp.position}</td>
                       <td className="p-4 text-gray-600">{emp.branch}</td>
                       <td className="p-4 text-green-600 font-bold">
-                        {emp.salary} افغانی
+                        {formatSalary(emp.salary)} 
                       </td>
                       <td className="p-4 text-center">
                         <span
@@ -312,7 +320,7 @@ export default function EmployeePage() {
             <div className="p-8 grid grid-cols-2 gap-6">
               <div>
                 <p className="text-sm text-gray-500 mb-1">آیدی کارمند</p>
-                <p className="font-bold text-lg text-gray-800" dir="ltr">
+                <p className="font-bold text-lg text-gray-800" dir="rtl">
                   {selectedEmployee.code}
                 </p>
               </div>
@@ -320,20 +328,20 @@ export default function EmployeePage() {
                 <p className="text-sm text-gray-500 mb-1">
                   نمبر تذکره (National ID)
                 </p>
-                <p className="font-bold text-lg text-gray-800" dir="ltr">
+                <p className="font-bold text-lg text-gray-800" dir="rtl">
                   {selectedEmployee.nationalId}
                 </p>
               </div>
               <div>
                 <p className="text-sm text-gray-500 mb-1">تاریخ شمولیت</p>
-                <p className="font-bold text-lg text-gray-800" dir="ltr">
+                <p className="font-bold text-lg text-gray-800" dir="rtl">
                   {selectedEmployee.joiningDate}
                 </p>
               </div>
               <div>
                 <p className="text-sm text-gray-500 mb-1">معاش (افغانی)</p>
                 <p className="font-bold text-lg text-green-600">
-                  {selectedEmployee.salary}
+                  {formatSalary(selectedEmployee.salary)}
                 </p>
               </div>
               <div>

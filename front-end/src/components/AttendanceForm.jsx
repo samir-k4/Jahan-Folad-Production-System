@@ -68,17 +68,25 @@ export default function AttendanceForm() {
 
   return (
     <div
-      className="bg-white p-6 rounded-lg shadow max-w-7xl mx-auto my-10"
+      className="bg-gray-50 p-8 rounded-2xl shadow-lg max-w-7xl mx-auto my-12 border border-gray-200"
       dir="rtl"
     >
+      {/* Header */}
+      <div className="mb-8 border-b pb-6">
+        <h1 className="text-3xl font-bold text-gray-800">فورم حاضری کارمندان</h1>
+        <p className="text-lg text-gray-500 mt-2">
+          لطفاً نمایندگی و تاریخ را برای ثبت حاضری انتخاب کنید.
+        </p>
+      </div>
+
       {/* Header Controls: Branch and Date */}
-      <div className="flex justify-between items-center mb-6 bg-gray-50 p-4 rounded border">
+      <div className="flex justify-between items-center mb-8 bg-white p-6 rounded-xl shadow-md border border-gray-100">
         {/* Branch Selector */}
         <div className="flex items-center space-x-4 space-x-reverse">
-          <label className="font-bold text-gray-700">نمایندگی:</label>
+          <label className="font-bold text-xl text-gray-700">نمایندگی:</label>
           <div className="relative">
             <select
-              className="appearance-none border border-gray-300 p-2 rounded-lg bg-white text-gray-700 w-56 focus:outline-none focus:ring-1 focus:ring-[#8c2e25] cursor-pointer transition-all"
+              className="appearance-none border border-gray-300 p-3 rounded-lg bg-white text-gray-800 w-64 focus:outline-none focus:ring-2 focus:ring-[#8c2e25] cursor-pointer transition-all text-lg"
               value={selectedBranch}
               onChange={(e) => setSelectedBranch(e.target.value)}
             >
@@ -95,10 +103,10 @@ export default function AttendanceForm() {
 
         {/* Date Selector */}
         <div className="flex items-center space-x-4 space-x-reverse">
-          <label className="font-bold text-gray-700">تاریخ:</label>
+          <label className="font-bold text-xl text-gray-700">تاریخ:</label>
           <input
             type="date"
-            className="appearance-none border border-gray-300 p-2 rounded-lg bg-white text-gray-700 w-48 focus:outline-none focus:ring-1 focus:ring-[#8c2e25] transition-all cursor-pointer"
+            className="appearance-none border border-gray-300 p-3 rounded-lg bg-white text-gray-800 w-56 focus:outline-none focus:ring-2 focus:ring-[#8c2e25] transition-all cursor-pointer text-lg"
             value={selectedDate}
             onChange={(e) => setSelectedDate(e.target.value)}
           />
@@ -106,60 +114,67 @@ export default function AttendanceForm() {
       </div>
 
       {/* Table */}
-      <table className="w-full text-right border-collapse">
-        <thead>
-          <tr className="bg-gray-100 border-b text-slate-600">
-            <th className="p-3">نام کارمند</th>
-            <th className="p-3">وظیفه</th>
-            <th className="p-3 text-center">حالت</th>
-            <th className="p-3 text-center">مجموع حاضری ماه</th>
-            <th className="p-3 text-center">روز های حاضر</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredEmployees.map((emp) => (
-            <tr
-              key={emp.id}
-              className="border-b hover:bg-gray-50 transition-colors"
-            >
-              <td className="p-3 font-medium text-gray-800">{emp.name}</td>
-              <td className="p-3 text-gray-600">{emp.position}</td>
-              <td className="p-3 text-center">
-                <input
-                  type="checkbox"
-                  defaultChecked
-                  className="w-5 h-5 accent-[#8c2e25] text-[#8c2e25] cursor-pointer rounded border-gray-300 focus:ring-[#8c2e25]"
-                />
-              </td>
-              <td
-                className="py-3 text-center text-gray-600 font-semibold"
-                dir="ltr"
-              >
-                {emp.totalDays}
-              </td>
-              <td
-                className="py-3 text-center text-gray-600 font-semibold"
-                dir="ltr"
-              >
-                {emp.presentDays}
-              </td>
+      <div className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
+        <table className="w-full text-right border-collapse">
+          <thead>
+            <tr className="bg-gray-100 border-b-2 border-gray-200 text-slate-700">
+              <th className="p-5 text-xl">نام کارمند</th>
+              <th className="p-5 text-xl">وظیفه</th>
+              <th className="p-5 text-xl text-center">حالت</th>
+              <th className="p-5 text-xl text-center">مجموع حاضری ماه</th>
+              <th className="p-5 text-xl text-center">روز های حاضر</th>
             </tr>
-          ))}
+          </thead>
+          <tbody>
+            {filteredEmployees.map((emp) => (
+              <tr
+                key={emp.id}
+                className="border-b hover:bg-gray-50 transition-colors"
+              >
+                <td className="p-5 font-medium text-gray-800 text-lg">
+                  {emp.name}
+                </td>
+                <td className="p-5 text-gray-600 text-lg">{emp.position}</td>
+                <td className="p-5 text-center">
+                  <input
+                    type="checkbox"
+                    defaultChecked
+                    className="w-6 h-6 accent-[#8c2e25] text-[#8c2e25] cursor-pointer rounded border-gray-300 focus:ring-2 focus:ring-[#8c2e25]"
+                  />
+                </td>
+                <td
+                  className="py-5 text-center text-gray-600 font-semibold text-lg"
+                  dir="ltr"
+                >
+                  {emp.totalDays}
+                </td>
+                <td
+                  className="py-5 text-center text-gray-600 font-semibold text-lg"
+                  dir="ltr"
+                >
+                  {emp.presentDays}
+                </td>
+              </tr>
+            ))}
 
-          {/* Message if no employees are found (array is empty) */}
-          {filteredEmployees.length === 0 && (
-            <tr>
-              <td colSpan="5" className="p-8 text-center text-gray-500">
-                لطفاً یک نمایندگی را انتخاب کنید تا لیست کارمندان نمایش داده
-                شود.
-              </td>
-            </tr>
-          )}
-        </tbody>
-      </table>
+            {filteredEmployees.length === 0 && (
+              <tr>
+                <td
+                  colSpan="5"
+                  className="p-10 text-center text-gray-500 text-xl"
+                >
+                  لطفاً یک نمایندگی را انتخاب کنید تا لیست کارمندان نمایش داده
+                  شود.
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
 
-      <div className="mt-6 border-t pt-4 border-gray-100">
-        <button className="bg-[#8c2e25] text-white font-bold px-8 py-3 rounded-lg shadow hover:bg-[#5a1f1a] hover:shadow-lg transition-all focus:ring-4 focus:ring-[#8c2e25]">
+      {/* Footer */}
+      <div className="mt-8 border-t-2 pt-6 border-gray-200 flex justify-end">
+        <button className="bg-[#8c2e25] text-white font-bold px-10 py-4 rounded-xl shadow-lg hover:bg-[#5a1f1a] hover:shadow-xl transition-all focus:ring-4 focus:ring-[#8c2e25] text-xl">
           ذخیره حاضری
         </button>
       </div>
